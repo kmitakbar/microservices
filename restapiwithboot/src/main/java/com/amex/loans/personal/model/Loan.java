@@ -2,17 +2,17 @@ package com.amex.loans.personal.model;
 
 public class Loan {
 
-	private String loanNumber;
+	private Long loanNumber;
 	private String customerName;
 	private String email;
 	private String phone;
-	private Long amout;
-	private Long emi;
+	private Double amout;
+	private Double emi;
 	private Integer numberofEmis;
-	public String getLoanNumber() {
+	public Long getLoanNumber() {
 		return loanNumber;
 	}
-	public void setLoanNumber(String loanNumber) {
+	public void setLoanNumber(Long loanNumber) {
 		this.loanNumber = loanNumber;
 	}
 	public String getCustomerName() {
@@ -33,16 +33,16 @@ public class Loan {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public Long getAmout() {
+	public Double getAmout() {
 		return amout;
 	}
-	public void setAmout(Long amout) {
+	public void setAmout(Double amout) {
 		this.amout = amout;
 	}
-	public Long getEmi() {
+	public Double getEmi() {
 		return emi;
 	}
-	public void setEmi(Long emi) {
+	public void setEmi(Double emi) {
 		this.emi = emi;
 	}
 	public Integer getNumberofEmis() {
@@ -56,7 +56,7 @@ public class Loan {
 		return "Loan [loanNumber=" + loanNumber + ", customerName=" + customerName + ", email=" + email + ", phone="
 				+ phone + ", amout=" + amout + ", emi=" + emi + ", numberofEmis=" + numberofEmis + "]";
 	}
-	public Loan(String loanNumber, String customerName, String email, String phone, Long amout, Long emi,
+	public Loan(Long loanNumber, String customerName, String email, String phone, Double amout, Double emi,
 			Integer numberofEmis) {
 		super();
 		this.loanNumber = loanNumber;
