@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.techit.services.org/user"
+	xmlns:tns="http://www.techit.services.org/user"
+	elementFormDefault="qualified">
+	<element name="userRequest">
+		<complexType>
+			<sequence>
+				<element name="name" type="string" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="userResponse">
+		<complexType>
+			<sequence>
+				<element name="user" type="tns:user" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<complexType name="user">
+		<sequence>
+			<element name="name" type="string" />
+			<element name="uid" type="int" />
+			<element name="gender" type="string" />
+		</sequence>
+	</complexType>
+
+</schema>

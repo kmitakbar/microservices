@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+				  xmlns:gs="http://www.techit.services.org/user">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gs:userRequest>
+      <gs:name>akbar</gs:name>
+      </gs:userRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

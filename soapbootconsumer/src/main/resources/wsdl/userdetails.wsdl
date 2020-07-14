@@ -1,0 +1,71 @@
+<wsdl:definitions
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:sch="http://www.techit.services.org/user"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.techit.services.org/user"
+	targetNamespace="http://www.techit.services.org/user">
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			elementFormDefault="qualified"
+			targetNamespace="http://www.techit.services.org/user">
+			<element name="userRequest">
+				<complexType>
+					<sequence>
+						<element name="name" type="string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="userResponse">
+				<complexType>
+					<sequence>
+						<element name="user" type="tns:user" />
+					</sequence>
+				</complexType>
+			</element>
+			<complexType name="user">
+				<sequence>
+					<element name="name" type="string" />
+					<element name="uid" type="int" />
+					<element name="gender" type="string" />
+				</sequence>
+			</complexType>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="userResponse">
+		<wsdl:part element="tns:userResponse" name="userResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="userRequest">
+		<wsdl:part element="tns:userRequest" name="userRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="userservice">
+		<wsdl:operation name="user">
+			<wsdl:input message="tns:userRequest" name="userRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:userResponse"
+				name="userResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="userserviceSoap11"
+		type="tns:userservice">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="user">
+			<soap:operation soapAction="" />
+			<wsdl:input name="userRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="userResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="userserviceService">
+		<wsdl:port binding="tns:userserviceSoap11"
+			name="userserviceSoap11">
+			<soap:address location="http://localhost:9090/soapws" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

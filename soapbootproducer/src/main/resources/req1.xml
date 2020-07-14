@@ -1,0 +1,7 @@
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+	<Body>
+	<userRequest xmlns="http://www.techit.services.org/user">
+	<name>akbar</name>
+	</userRequest>
+	</Body>
+</Envelope>
