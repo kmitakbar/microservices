@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="sample-req" format="json">
+      <types:shape format="weave" example="examples/sample.json"><![CDATA[%dw 2.0
+
+type sample_req = {|
+  customerName: String, 
+  email: String, 
+  phone: String, 
+  amout: Number {"typeId": "int"}, 
+  emi: Number {"typeId": "int"}
+|} {"example": "{\"customerName\":\"akbar\",\"email\":\"akbar@gmail.com\",\"phone\":\"929999999\",\"amout\":15000,\"emi\":4000}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#9ba01a8a-18af-43b4-b76b-2bc0e2bbc5ff">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="sample-req"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

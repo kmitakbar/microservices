@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:java="http://www.mulesoft.org/schema/mule/java"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/java http://www.mulesoft.org/schema/mule/java/current/mule-java.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="af9b767a-a5fc-406c-b34f-6e57aa453db3" basePath="api/pdf" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="pdfgenFlow" doc:id="505986ba-0433-4b8f-a73d-c50ef0bc0f89" >
+		<http:listener doc:name="Listener" doc:id="b1ac99b4-9e45-40b0-991e-9fe03ae646bb" config-ref="HTTP_Listener_config" path="generate"/>
+		<ee:transform doc:name="Transform Message" doc:id="9ba01a8a-18af-43b4-b76b-2bc0e2bbc5ff" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+java!pdfgen::PdfGenerator::generatePdfDocumnet(payload)
+
+	
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="714ef65b-ec0e-47dd-b479-fa2b39a181d7" message="#[payload]"/>
+	</flow>
+</mule>
